@@ -1,6 +1,6 @@
 (ns tidy-up.test.core
-  (:use [tidy-up.core])
-  (:use [clojure.test]))
+  (:use tidy-up.core
+        clojure.test))
 
 (deftest empty-works
   (is (= "\n" (tidy-up ""))))
