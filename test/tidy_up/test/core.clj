@@ -28,4 +28,10 @@
           dummy-app (fn [request] dummy-response)
           tidy-app (wrap-tidy-up dummy-app)]
       (is (= 42
+             (:body (tidy-app dummy-request))))))
+  (deftest middleware-content-type-has-charset
+    (let [dummy-response {:body dirty :headers {"Content-Type" "text/html; charset=utf-8"}}
+          dummy-app (fn [request] dummy-response)
+          tidy-app (wrap-tidy-up dummy-app)]
+      (is (= tidyed
              (:body (tidy-app dummy-request)))))))

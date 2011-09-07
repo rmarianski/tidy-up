@@ -27,7 +27,10 @@
   "create middleware that tidy's up string text/html responses"
   [app]
   (fn [request]
-    (let [response (app request)]
-      (if (= "text/html" (get-in response [:headers "Content-Type"]))
+    (let [response (app request)
+          content-type (get-in response [:headers "Content-Type"])]
+      (if (and content-type
+               (or (= "text/html" content-type)
+                   (.startsWith content-type "text/html;")))
         (update-in response [:body] tidy-up)
         response))))
