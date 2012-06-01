@@ -4,11 +4,13 @@ Hiccup is fantastic, but generates markup that is hard to read when viewing the 
 
 ## Usage
 
+```clj
 ;; middleware to tidy up text/html output
 (def app (wrap-tidy-up main-routes))
 
 ;; function to tidy up a string
 (tidy-up "<html><body><h1>Hi World</h1></body></html>")
+```
 
 ## License
 
